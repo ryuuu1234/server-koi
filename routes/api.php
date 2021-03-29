@@ -19,6 +19,12 @@ use App\Http\Controllers\API\RegisterController;
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [RegisterController::class, 'login']);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::post('login-admin', [LoginAdminController::class, 'login']);
+Route::middleware('auth:api')->group( function () {
+
+    Route::post('logout', [RegisterController::class, 'logout']);
+    Route::get('user', [RegisterController::class, 'user']);
+    // ini nanti untuk admin
 });
+
+
